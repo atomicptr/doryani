@@ -18,6 +18,8 @@ For custom filters you need to create/edit the file: **~/.config/doryani/config.
 Like this:
 
 ```toml
+disable_default_filters = false
+
 [[filter]]
 name = "My custom filter"
 url = "https://raw.githubusercontent.com/atomicptr/doryani/refs/heads/master/my-custom-filter.filter"

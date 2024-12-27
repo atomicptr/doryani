@@ -2,6 +2,7 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Config {
+    pub disable_default_filters: Option<bool>,
     pub filter: Vec<Filter>,
 }
 
@@ -18,11 +19,11 @@ fn defaults() -> Vec<Filter> {
             url: "https://raw.githubusercontent.com/NeverSinkDev/NeverSink-PoE2litefilter/refs/heads/main/NeverSinks%20Litefilter.filter".to_string(),
         },
         Filter {
-            name: Some("Pecham's Loot Filter - (Early Game)".to_string()),
+            name: Some("Pechams Loot Filter - Early Game".to_string()),
             url: "https://pastebin.com/raw/8RCBmSYK".to_string(),
         },
         Filter {
-            name: Some("Pecham's Loot Filter - (ENDGAME)".to_string()),
+            name: Some("Pechams Loot Filter - ENDGAME".to_string()),
             url: "https://pastebin.com/raw/7NPggFSF".to_string(),
         },
     ]
@@ -34,7 +35,10 @@ pub fn load_config() -> Result<Config, String> {
     // TODO: if exists, read
     // TODO: merge with defaults (if same name exists, skip)
 
-    let config = Config { filter: defaults() };
+    let config = Config {
+        disable_default_filters: None,
+        filter: defaults(),
+    };
 
     Ok(config)
 }
