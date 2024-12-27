@@ -11,9 +11,15 @@ A simple Path of Exile 2 filter list manager
 
 ## Configuration
 
-**This is currently not implemented**
+For custom filters you need to create/edit the file:
 
-For custom filters you need to create/edit the file: **~/.config/doryani/config.toml**
+```bash
+# Linux
+edit $XDG_CONFIG_HOME/doryani/config.toml # (~/.config/doryani/config.toml)
+
+# Windows
+edit %LocalAppData%/doryani/config.toml
+```
 
 Like this:
 
