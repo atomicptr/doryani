@@ -4,6 +4,8 @@ use std::{
     str::FromStr,
 };
 
+use directories::UserDirs;
+
 fn find_linux_steam_dir() -> Result<String, String> {
     let root_dirs = vec![
         "~/.steam/steam",
@@ -48,7 +50,24 @@ pub fn find_filter_dir() -> Result<String, String> {
 
             Ok(poe2_dir.to_str().unwrap().to_string())
         }
-        // "windows" => Err("windows is not yet supported".to_string()),
+        "windows" => {
+            let user_dirs = UserDirs::new().unwrap();
+            let documents = user_dirs.document_dir().unwrap();
+
+            let poe2_dir = documents
+                .to_path_buf()
+                .join("My Games")
+                .join("Path of Exile 2");
+
+            if !poe2_dir.exists() {
+                return Err(
+                    "Path of Exile 2 could not be found, try installing it or starting it first"
+                        .to_string(),
+                );
+            }
+
+            Ok(poe2_dir.to_str().unwrap().to_string())
+        }
         os => Err(format!("OS: {} is not supported", os)),
     }
 }
