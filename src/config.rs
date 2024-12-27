@@ -1,3 +1,9 @@
+use std::{
+    fs::{create_dir_all, File},
+    io::read_to_string,
+};
+
+use directories::ProjectDirs;
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
@@ -30,15 +36,33 @@ fn defaults() -> Vec<Filter> {
 }
 
 pub fn load_config() -> Result<Config, String> {
-    // TODO: actually add support for custom configs
-    // TODO: get default path
-    // TODO: if exists, read
-    // TODO: merge with defaults (if same name exists, skip)
+    let project_dirs = ProjectDirs::from("", "", "doryani").unwrap();
+    let config_dir = project_dirs.config_dir().to_path_buf();
 
-    let config = Config {
-        disable_default_filters: None,
-        filter: defaults(),
-    };
+    if !config_dir.exists() {
+        let _ = create_dir_all(config_dir.clone()).unwrap();
+    }
+
+    let config_file = config_dir.join("config.toml");
+
+    if !config_file.exists() {
+        return Ok(Config {
+            disable_default_filters: None,
+            filter: defaults(),
+        });
+    }
+
+    let f = File::open(config_file).unwrap();
+    let data = read_to_string(f).unwrap();
+
+    let mut config: Config = toml::from_str(data.as_str()).unwrap();
+
+    let add_default_filters = !config.disable_default_filters.or(Some(false)).unwrap();
+
+    if add_default_filters {
+        let mut default_filters = defaults();
+        config.filter.append(&mut default_filters);
+    }
 
     Ok(config)
 }
