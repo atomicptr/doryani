@@ -17,6 +17,14 @@ fn defaults() -> Vec<Filter> {
             name: Some("NeverSinks Litefilter".to_string()),
             url: "https://raw.githubusercontent.com/NeverSinkDev/NeverSink-PoE2litefilter/refs/heads/main/NeverSinks%20Litefilter.filter".to_string(),
         },
+        Filter {
+            name: Some("Pecham's Loot Filter - (Early Game)".to_string()),
+            url: "https://pastebin.com/raw/8RCBmSYK".to_string(),
+        },
+        Filter {
+            name: Some("Pecham's Loot Filter - (ENDGAME)".to_string()),
+            url: "https://pastebin.com/raw/7NPggFSF".to_string(),
+        },
     ]
 }
 

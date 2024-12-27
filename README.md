@@ -4,7 +4,7 @@ A simple Path of Exile 2 filter list manager
 
 ## Features
 
-- Downloads a set of good default filters (Currently only NeverSinks Litefilter)
+- Downloads a set of good default filters
 - Updates all filters managed by doryani
 - Allows downloading and updating custom filters (soon)
 - Support for Windows and Linux
