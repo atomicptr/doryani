@@ -24,6 +24,7 @@ pub fn load_config() -> Result<Config, String> {
     // TODO: actually add support for custom configs
     // TODO: get default path
     // TODO: if exists, read
+    // TODO: merge with defaults (if same name exists, skip)
 
     let config = Config { filter: defaults() };
 

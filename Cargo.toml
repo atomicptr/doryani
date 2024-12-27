@@ -1,6 +1,9 @@
 [package]
 name = "doryani"
+description = "A simple Path of Exile 2 filter list manager"
 version = "0.1.0"
+authors = ["Christopher Kaster <me@atomicptr.de>"]
+license = "GPL-3.0-or-later"
 edition = "2021"
 
 [dependencies]
