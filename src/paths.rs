@@ -8,8 +8,8 @@ use directories::UserDirs;
 
 fn find_linux_steam_dir() -> Result<String, String> {
     let root_dirs = vec![
-        "~/.steam/steam",
         "~/.var/app/com.valvesoftware.Steam/data/Steam",
+        "~/.steam/steam",
     ];
 
     for dir in root_dirs.iter() {
